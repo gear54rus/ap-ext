@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "AP EXT",
+  "version": "1.0",
+  "description": "Annoying popups extension",
+  "minimum_chrome_version": "60.0",
+  "applications": {
+    "gecko": {
+      "strict_min_version": "52.0"
+    }
+  },
+  "icons": {
+    "48": "dist/icons/main.png"
+  },
+  "background": {
+    "scripts": ["dist/background.js"]
+  },
+  "browser_action": {
+    "default_icon": "dist/icons/main.png",
+    "default_title": "AP EXT",
+    "default_popup": "dist/popup/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "match_about_blank": false,
+      "all_frames": true,
+      "js": ["dist/content/index.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    "dist/content/modal.css",
+    "dist/content/modal.js",
+    "dist/icons/main.png"
+  ],
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ]
+}

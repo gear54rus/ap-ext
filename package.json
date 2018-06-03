@@ -1,0 +1,47 @@
+{
+  "name": "ap-ext",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Annoying popups extension",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint src",
+    "dev": "webpack --color --progress -w",
+    "build": "webpack --color --progress --env.production",
+    "precommit": "echo Please wait for eslint && npm run eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.7.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-webpack": "^0.10.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "husky": "^0.14.3",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.2",
+    "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1"
+  }
+}

@@ -1,0 +1,44 @@
+@import '~util/base';
+
+#ap-ext-modal {
+  display: block;
+  position: fixed;
+  z-index: 999;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000;
+  background-color: rgba(0,0,0,0.8);
+}
+
+#ap-ext-modal .modal-content {
+  color: $color;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+#ap-ext-modal .modal-content img {
+  height: 40px;
+  float: left;
+  margin-right: 10px;
+}
+
+#ap-ext-modal .close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#ap-ext-modal .close:hover,
+#ap-ext-modal .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
