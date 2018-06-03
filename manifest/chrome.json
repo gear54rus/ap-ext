@@ -4,11 +4,6 @@
   "version": "1.0",
   "description": "Annoying popups extension",
   "minimum_chrome_version": "60.0",
-  "applications": {
-    "gecko": {
-      "strict_min_version": "52.0"
-    }
-  },
   "icons": {
     "48": "dist/icons/main.png"
   },

@@ -2,3 +2,5 @@
 /dist/**/*.js
 /dist/**/*.css
 /node_modules
+/AP-EXT.*
+/manifest.json
