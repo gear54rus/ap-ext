@@ -26,3 +26,7 @@ export function capitalize(string) {
 
   return `${input[0].toUpperCase()}${input.slice(1)}`;
 }
+
+export function similarDomains(noWWW, possiblyWWW) {
+  return [noWWW, `www.${noWWW}`].includes(possiblyWWW);
+}

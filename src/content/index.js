@@ -1,4 +1,4 @@
-import { storage } from 'util/util';
+import { storage, similarDomains } from 'util/util';
 import modalTmpl from './modal.handlebars';
 
 // Assumes 'site.name' is unique.
@@ -19,12 +19,12 @@ async function updateSite(targetSite, newShowModal) {
   }
 }
 
+// Modal
 (async () => {
   const { sites } = await storage.get();
   const { location, document: { body, head } } = window;
   const { extension } = chrome;
-
-  const targetSite = sites.find(site => [site.domain, `www.${site.domain}`].includes(location.hostname));
+  const targetSite = sites.find(site => similarDomains(site.domain, location.hostname));
 
   if (targetSite && (targetSite.showModal > 0)) {
     body.innerHTML += modalTmpl({
@@ -49,4 +49,40 @@ async function updateSite(targetSite, newShowModal) {
         updateSite(targetSite, 0);
       });
   }
+})();
+
+// Icon
+(async () => {
+  const { extension } = chrome;
+  const { sites } = await storage.get();
+  const { location, URL } = window;
+
+  if (
+    !['google.com', 'google.ru', 'bing.com']
+      .some(domain => similarDomains(domain, location.hostname))
+  ) {
+    return;
+  }
+
+  const { document, getComputedStyle } = window;
+  const img = document.createElement('img');
+
+  img.src = extension.getURL('dist/icons/main.png');
+
+  Array.from(document.getElementsByTagName('cite'))
+    .forEach(cite => {
+      const { textContent, parentElement } = cite;
+      let hostname;
+
+      try {
+        ({ hostname } = new URL(textContent));
+      } catch (_) {
+        return;
+      }
+
+      if (sites.find(({ domain }) => similarDomains(domain, hostname))) {
+        img.style.height = getComputedStyle(cite.parentElement).height;
+        parentElement.insertBefore(img, cite);
+      }
+    });
 })();
