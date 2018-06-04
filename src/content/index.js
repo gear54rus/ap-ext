@@ -75,7 +75,20 @@ async function updateSite(targetSite, newShowModal) {
       try {
         ({ hostname } = new URL(textContent));
       } catch (_) {
-        hostname = textContent;
+        //
+      }
+
+      // Sometimes search engines omit protocol but keep the slash at the end.
+      if (!hostname) {
+        try {
+          ({ hostname } = new URL(`https://${textContent}`));
+        } catch (_) {
+          //
+        }
+      }
+
+      if (!hostname) {
+        return;
       }
 
       if (sites.find(({ domain }) => similarDomains(domain, hostname))) {
