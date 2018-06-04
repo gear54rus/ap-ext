@@ -65,9 +65,7 @@ async function updateSite(targetSite, newShowModal) {
   }
 
   const { document, getComputedStyle } = window;
-  const img = document.createElement('img');
-
-  img.src = extension.getURL('dist/icons/main.png');
+  const imgSrc = extension.getURL('dist/icons/main.png');
 
   Array.from(document.getElementsByTagName('cite'))
     .forEach(cite => {
@@ -77,10 +75,13 @@ async function updateSite(targetSite, newShowModal) {
       try {
         ({ hostname } = new URL(textContent));
       } catch (_) {
-        return;
+        hostname = textContent;
       }
 
       if (sites.find(({ domain }) => similarDomains(domain, hostname))) {
+        const img = document.createElement('img');
+
+        img.src = imgSrc;
         img.style.height = getComputedStyle(cite.parentElement).height;
         parentElement.insertBefore(img, cite);
       }
